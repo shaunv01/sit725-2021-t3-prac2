@@ -59,14 +59,41 @@ app.get("/book", (req, res) => {
 
 app.put("/book", (req, res) => {
     try{
+        let bookFound = false;
         for (var i = 0; i < books.length; i++) {
             console.log(books[i].title);
             if (req.body.title == books[i].title) {
                 books[i].author = req.body.author;
                 books[i].price = req.body.price;
+                bookFound = true;
             }
         }
-        res.json({ statusCode:200, data:books });
+        if (!bookFound) {
+            res.json({ statusCode: 500, data: "could not find the book with the title " + req.body.title });
+        } else {
+            res.json({ statusCode:200, data:books });
+        }
+        
+    }catch(e){
+        res.json({ statusCode:500, data: "something went wrong with get" });
+    }
+});
+
+app.delete("/book", (req, res) => {
+    try{
+        let bookFound = false;
+        for (var i = 0; i < books.length; i++) {
+            console.log(books[i].title);
+            if (req.body.title == books[i].title) {
+                delete books[i];
+                bookFound = true;
+            }
+        }
+        if (!bookFound) {
+            res.json({ statusCode: 500, data: "could not find the book with the title " + req.body.title });
+        } else {
+            res.json({ statusCode:200, data:books });
+        }
         
     }catch(e){
         res.json({ statusCode:500, data: "something went wrong with get" });
