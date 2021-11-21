@@ -10,3 +10,8 @@ A "get" method has been implemented to add 2 number together, this can be called
 localhost:3030/addTwoNumber?n1=10&n2=15
 
 A "post" method has been implement to add 2 number together, using post man, we can pass json in the body of the request and we will get the same reult.
+
+A book database in json has been created. There are get and push functions.
+The get function will allow for a price selection, so if "p" is specified then the all the books less than or equal to that price will be returned.
+The push will allow a new book to be added, provided that the book does not have a title which already exists.
+
