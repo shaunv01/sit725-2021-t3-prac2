@@ -1,8 +1,12 @@
+//Include express JS library
 const express = require("express");
 
+//create instance of express library
 const app = express();
+
 app.use(express.json());
 
+/*
 const books = [
     {
         title:"Book 1",
@@ -41,45 +45,61 @@ app.post("/book",(res,res) => {
     }
 });
 
-const addTwoNumber = (n1, n2) => {
+//console.log(addTwoNumber(1,2));
+*/
+const doMath = (n1, n2, op) => {
     if (Number.isNaN(n1) || Number.isNaN(n2)){
         throw "error";
     }
+    if (op == "+") {
+        return n1 + n2;
+    } else if (op == "-") {
+        return n1 - n2;
+    } else if (op =="*") {
+        return n1 * n2;
+    } else if (op =="%") {
+        return n1 / n2l
+    }
+};
+
+const addTwoNumber = (n1, n2) => {
+    if (Number.isNaN(n1) || Number.isNaN(n2)) {
+        throw "error";
+    }
+    console.log("n1=" + n1 + " n2=" + n2);
     return n1 + n2;
-}
+};
 
-//console.log(addTwoNumber(1,2));
-
-app.get("/addTwoNumbers",(req, res) =>{
+app.get("/addTwoNumbers",(req, res) => {
     try{
         const n1 = parseInt(req.query.n1);
         const n2 = parseInt(req.query.n2);
-        const result = addTwoNumber(n1,n2);
-        res.json({statusCode:200, data: result});
+        const result = addTwoNumber(n1, n2);
+        res.json({ statusCode : 200, data: result });
     }catch(e){
-        res.json({statusCode:500, data:"whoopsie"})
+        res.json({ statusCode : 500, data:"whoopsie get" })
     }
     
 });
 
-app.post("/addTwoNumbers",(req, res) =>{
+app.post("/addTwoNumbers",(req, res) => {
     try{
-        const n1 = req.body.n1;
-        const n2 = req.body.n2;
-        const result = addTwoNumber(n1,n2);
-        res.json({statusCode:200, data: result});
+        const n1 = parseInt(req.body.n1);
+        const n2 = parseInt(req.body.n2);
+        const result = addTwoNumber(n1, n2);
+        res.json({ statusCode : 200, data: result });
     }catch(e){
-        res.json({statusCode:500, data:"whoopsie"})
-    }
-    
+        res.json({ statusCode : 500, data : "whoopsie post" })
+    }    
 });
 
+//setup a constant for the application port to listen on
 const port = 3030;
 
+//start the application listening on the port
 app.listen(port,() => {
     console.log("Hello I'm listening to port " + port);
 })
-
 
 //console.log("Hello I'm here at line 13");
 

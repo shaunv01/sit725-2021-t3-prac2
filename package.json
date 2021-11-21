@@ -4,8 +4,8 @@
   "description": "express basic app",
   "main": "server.js",
   "scripts": {
-    "start":"nodemon server.js",
-    "start2":"node server.js"
+    "start": "nodemon server.js",
+    "start2": "node server.js"
   },
   "repository": {
     "type": "git",
